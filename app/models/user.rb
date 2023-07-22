@@ -28,6 +28,8 @@ class User < ApplicationRecord
         -> { joins(:notification_timings).merge(NotificationTiming.attended_to_event) }
   scope :allowing_liked_event_notification,
         -> { joins(:notification_timings).merge(NotificationTiming.liked_event) }
+  
+  enum gender: {other: 0, woman: 1, man: 2}
 
   def owner?(event)
     event.user_id == id
